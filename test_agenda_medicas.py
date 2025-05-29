@@ -1,12 +1,14 @@
 import unittest
 import datetime
 from agenda_medica import Notification
+from agenda_medica import consulta
 from unittest.mock import MagicMock
 
 class test_agenda_medica(unittest.TestCase):
     def setUp(self):
         self.mock = MagicMock()
         self.notification = Notification(self.mock)
+        self.consulta = consulta()
 
     def tearDown(self):
         del self.mock
@@ -33,10 +35,30 @@ class test_agenda_medica(unittest.TestCase):
     def test_agendar_consulta_sucess(self):
         pacient = "Eduardo"
         medic = "Rafael"
-        Horario = datetime.datetime(2025, 6, 7, 14, 20, 0)
+        time = datetime.datetime(2025, 6, 7, 14, 20, 0)
 
-        self.mock.agendar_consulta.return_value = True
-        self.assertTrue(self.agendar_consulta(pacient, medic, Horario))
-        
+        self.consulta.agendar_consulta.return_value = True
+        self.assertTrue(self.consulta.agendar_consulta(pacient, medic, time))
+
+    def test_agendar_consulta_fail(self):
+        pacient = None
+        medic = None
+        time = None
+
+        self.consulta.agendar_consulta.return_value = False
+        self.assertFalse(self.consulta.agendar_consulta(pacient, medic, time))
+
+    def test_cancelar_consulta_sucess(self):
+        id_consulta = 1
+
+        self.consulta.cancelar_consulta.return_value = True
+        self.assertTrue(self.consulta.cancelar_consulta(id_consulta))
+
+    def test_cancelar_consulta_fail(self):
+        id_consulta = 1
+
+        self.consulta.cancelar_consulta.return_value = False
+        self.assertFalse(self.consulta.cancelar_consulta(id_consulta))
+
 if __name__ == "__main__":
     unittest.main()
