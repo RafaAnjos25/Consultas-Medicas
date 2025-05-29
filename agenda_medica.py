@@ -8,3 +8,11 @@ class consulta:
 
     def cancelar_consulta(self,id_consulta):
         return None
+    
+class medic:
+    def filtrar_especialiade(self, filtro):
+        return None
+        
+class agenda:
+    def vericar_agenda(self):
+        return None

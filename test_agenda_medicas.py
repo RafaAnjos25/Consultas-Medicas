@@ -2,6 +2,8 @@ import unittest
 import datetime
 from agenda_medica import Notification
 from agenda_medica import consulta
+from agenda_medica import medic
+from agenda_medica import agenda
 from unittest.mock import MagicMock
 
 class test_agenda_medica(unittest.TestCase):
@@ -9,10 +11,14 @@ class test_agenda_medica(unittest.TestCase):
         self.mock = MagicMock()
         self.notification = Notification(self.mock)
         self.consulta = consulta()
+        self.medic = medic()
+        self.agenda = agenda()
 
     def tearDown(self):
         del self.mock
         del self.notification
+        del self.consulta
+        del self.medic
 
     def test_notification_sucess(self):
         email = "guts@gmai.com"
@@ -59,6 +65,23 @@ class test_agenda_medica(unittest.TestCase):
 
         self.consulta.cancelar_consulta.return_value = False
         self.assertFalse(self.consulta.cancelar_consulta(id_consulta))
+
+    def test_filtrar_especialidade(self):
+        verificacao = {
+            '1': {'Nome': 'Joao', 'Especialidade': 'Ortopedista'},
+            '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}
+        }
+        
+        filtro = "Ortopedista"
+
+        especialidade = {}
+        especialidade = self.medic.filtrar_especialiade(filtro)
+
+        self.assertEqual(especialidade, verificacao)
+
+    def test_verificar_agenda(self):
+        self.agenda.vericar_agenda.return_value = True
+        self.assertTrue(self.agenda.vericar_agenda())
 
 if __name__ == "__main__":
     unittest.main()
