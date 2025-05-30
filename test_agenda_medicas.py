@@ -34,7 +34,7 @@ class test_agenda_medica(unittest.TestCase):
         message = None
 
         self.mock.send_email.return_value = False
-        self.assertTrue(self.notification.notify_pacient(email, message))
+        self.assertFalse(self.notification.notify_pacient(email, message))
 
         self.mock.send_email.assert_called_once_with(email, message)
 
@@ -43,7 +43,6 @@ class test_agenda_medica(unittest.TestCase):
         medic = "Rafael"
         time = datetime.datetime(2025, 6, 7, 14, 20, 0)
 
-        self.consulta.agendar_consulta.return_value = True
         self.assertTrue(self.consulta.agendar_consulta(pacient, medic, time))
 
     def test_agendar_consulta_fail(self):
@@ -51,7 +50,6 @@ class test_agenda_medica(unittest.TestCase):
         medic = None
         time = None
 
-        self.consulta.agendar_consulta.return_value = False
         self.assertFalse(self.consulta.agendar_consulta(pacient, medic, time))
 
     def test_cancelar_consulta_sucess(self):
@@ -61,9 +59,8 @@ class test_agenda_medica(unittest.TestCase):
         self.assertTrue(self.consulta.cancelar_consulta(id_consulta))
 
     def test_cancelar_consulta_fail(self):
-        id_consulta = 1
+        id_consulta = None
 
-        self.consulta.cancelar_consulta.return_value = False
         self.assertFalse(self.consulta.cancelar_consulta(id_consulta))
 
     def test_filtrar_especialidade(self):
@@ -80,7 +77,6 @@ class test_agenda_medica(unittest.TestCase):
         self.assertEqual(especialidade, verificacao)
 
     def test_verificar_agenda(self):
-        self.agenda.vericar_agenda.return_value = True
         self.assertTrue(self.agenda.vericar_agenda())
 
 if __name__ == "__main__":
