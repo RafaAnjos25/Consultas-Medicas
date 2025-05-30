@@ -80,7 +80,7 @@ class test_agenda_medica(unittest.TestCase):
         self.assertEqual(especialidade, verificacao)
 
     def test_verificar_agenda(self):
-        self.agenda.vericar_agenda.return_value = True
+
         self.assertTrue(self.agenda.vericar_agenda())
 
 if __name__ == "__main__":
