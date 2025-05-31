@@ -5,7 +5,7 @@ def return_agenda():
             }    
         return agenda1
 
-def vericar_agenda(self):
+def vericar_agenda():
         valor = return_agenda()
 
         print(valor)
