@@ -37,11 +37,14 @@ agenda_consulta = {
 class agenda:        
     
     def agendar_consulta(self, id_consulta, paciente, medic, time):
-        global agenda_consulta
+        if paciente is not None and id_consulta is not None and medic is not None and time is not None:
+            global agenda_consulta
 
-        agenda_consulta [id_consulta] = {'Nome': paciente, 'Medico': medic, 'Horario': time}
-    
-        return agenda_consulta
+            agenda_consulta [id_consulta] = {'Nome': paciente, 'Medico': medic, 'Horario': time}
+        
+            return True
+        else:
+            return False
     
     def cancelar_consulta(self,id_consulta):
         global agenda_consulta

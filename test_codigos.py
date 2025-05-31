@@ -44,6 +44,14 @@ class test_agenda_medica(unittest.TestCase):
 
         self.assertTrue(self.agenda.agendar_consulta(id_consulta, pacient, medic, time))
 
+    def test_agendar_consulta_fail(self):
+        id_consulta = None
+        pacient = None
+        medic = None
+        time = None
+
+        self.assertFalse(self.agenda.agendar_consulta(id_consulta, pacient, medic, time))
+
     def test_cancelar_consulta_sucess(self):
         id_consulta = '1'
 
@@ -53,9 +61,14 @@ class test_agenda_medica(unittest.TestCase):
         self.assertTrue(self.agenda.vericar_agenda())
 
     def test_filtrar_especialidade(self):
-        filtro = 'Oftamologista'
+        filtro = 'Ortopedista'
 
-        self.assertTrue(self.medic.filtrar_especialiade(filtro))
+        verificacao = {
+            '1': {'Nome': 'Joao', 'Especialidade': 'Ortopedista'},
+            '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}}
+        
+        filtragem = self.medic.filtrar_especialiade(filtro)
+        self.assertEqual(verificacao, filtragem)
 
 if __name__ == "__main__":
     unittest.main()
