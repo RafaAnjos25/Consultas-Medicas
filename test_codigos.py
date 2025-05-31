@@ -53,7 +53,7 @@ class test_agenda_medica(unittest.TestCase):
         self.assertTrue(self.agenda.vericar_agenda())
 
     def test_filtrar_especialidade(self):
-        filtro = 'Oftamologista'
+        filtro = 'Oftalmologista'
 
         self.assertTrue(self.medic.filtrar_especialiade(filtro))
 
