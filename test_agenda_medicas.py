@@ -1,5 +1,4 @@
 import unittest
-import datetime
 from agenda_medica import Notification
 from agenda_medica import consulta
 from agenda_medica import medic
@@ -41,7 +40,7 @@ class test_agenda_medica(unittest.TestCase):
     def test_agendar_consulta_sucess(self):
         pacient = "Eduardo"
         medic = "Rafael"
-        time = datetime.datetime(2025, 6, 7, 14, 20, 0)
+        time = "2025-07-02, 13:18"
 
         self.assertTrue(self.consulta.agendar_consulta(pacient, medic, time))
 
@@ -55,7 +54,6 @@ class test_agenda_medica(unittest.TestCase):
     def test_cancelar_consulta_sucess(self):
         id_consulta = 1
 
-        self.consulta.cancelar_consulta.return_value = True
         self.assertTrue(self.consulta.cancelar_consulta(id_consulta))
 
     def test_cancelar_consulta_fail(self):
@@ -69,7 +67,7 @@ class test_agenda_medica(unittest.TestCase):
             '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}
         }
         
-        filtro = "Ortopedista"
+        filtro = 'Ortopedista'
 
         especialidade = {}
         especialidade = self.medic.filtrar_especialiade(filtro)
