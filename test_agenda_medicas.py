@@ -52,9 +52,10 @@ class test_agenda_medica(unittest.TestCase):
         self.assertFalse(self.consulta.agendar_consulta(pacient, medic, time))
 
     def test_cancelar_consulta_sucess(self):
-        id_consulta = 1
-
-        self.assertTrue(self.consulta.cancelar_consulta(id_consulta))
+        id_consulta = '1'
+        agenda_consulta = self.agenda.cancelar_consulta(id_consulta)
+        message = "Consulta presente na agenda"
+        self.assertNotIn(id_consulta, agenda_consulta, message)
 
     def test_cancelar_consulta_fail(self):
         id_consulta = None
@@ -62,17 +63,14 @@ class test_agenda_medica(unittest.TestCase):
         self.assertFalse(self.consulta.cancelar_consulta(id_consulta))
 
     def test_filtrar_especialidade(self):
+        filtro = 'Ortopedista'
+
         verificacao = {
             '1': {'Nome': 'Joao', 'Especialidade': 'Ortopedista'},
-            '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}
-        }
-        
-        filtro = "Ortopedista"
+            '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}}
 
-        especialidade = {}
-        especialidade = self.medic.filtrar_especialiade(filtro)
-
-        self.assertEqual(especialidade, verificacao)
+        filtragem = self.medic.filtrar_especialidade(filtro)
+        self.assertEqual(verificacao, filtragem)
 
     def test_verificar_agenda(self):
         self.assertTrue(self.agenda.vericar_agenda())
