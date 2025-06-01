@@ -46,16 +46,22 @@ class test_agenda_medica(unittest.TestCase):
 
     def test_cancelar_consulta_sucess(self):
         id_consulta = '1'
-
-        self.assertTrue(self.agenda.cancelar_consulta(id_consulta))
+        agenda_consulta = self.agenda.cancelar_consulta(id_consulta)
+        message = "Consulta presente na agenda"
+        self.assertNotIn(id_consulta, agenda_consulta, message)
 
     def test_verificar_agenda(self):
         self.assertTrue(self.agenda.vericar_agenda())
 
     def test_filtrar_especialidade(self):
-        filtro = 'Oftalmologista'
+        filtro = 'Ortopedista'
 
-        self.assertTrue(self.medic.filtrar_especialiade(filtro))
+        verificacao = {
+            '1': {'Nome': 'Joao', 'Especialidade': 'Ortopedista'},
+            '2': {'Nome': 'Mara', 'Especialidade': 'Ortopedista'}}
+
+        filtragem = self.medic.filtrar_especialiade(filtro)
+        self.assertEqual(verificacao, filtragem)
 
 if __name__ == "__main__":
     unittest.main()
