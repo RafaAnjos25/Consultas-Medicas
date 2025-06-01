@@ -54,8 +54,9 @@ class test_agenda_medica(unittest.TestCase):
 
     def test_cancelar_consulta_sucess(self):
         id_consulta = '1'
-
-        self.assertTrue(self.agenda.cancelar_consulta(id_consulta))
+        agenda_consulta = self.agenda.cancelar_consulta(id_consulta)
+        message = "Consulta presente na agenda"
+        self.assertNotIn(id_consulta, agenda_consulta, message)
 
     def test_verificar_agenda(self):
         self.assertTrue(self.agenda.vericar_agenda())

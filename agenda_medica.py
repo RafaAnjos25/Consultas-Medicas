@@ -49,8 +49,8 @@ class agenda:
     def cancelar_consulta(self,id_consulta):
         global agenda_consulta
         
-        consulta_removida = agenda_consulta.pop(id_consulta)
-        return consulta_removida
+        agenda_consulta.pop(id_consulta)
+        return agenda_consulta
 
     def vericar_agenda(self):
         global agenda_consulta  
@@ -58,3 +58,5 @@ class agenda:
         for id_chave, detalhes in agenda_consulta.items():
             print(f"{id_chave}: {detalhes}")
         return agenda_consulta
+    
+    
