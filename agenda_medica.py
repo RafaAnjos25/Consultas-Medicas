@@ -14,5 +14,5 @@ class medic:
         return None
         
 class agenda:
-    def vericar_agenda(self):
+    def verificar_agenda(self):
         return None

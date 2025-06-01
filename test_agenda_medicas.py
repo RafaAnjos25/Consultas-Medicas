@@ -73,7 +73,7 @@ class test_agenda_medica(unittest.TestCase):
         self.assertEqual(verificacao, filtragem)
 
     def test_verificar_agenda(self):
-        self.assertTrue(self.agenda.vericar_agenda())
+        self.assertTrue(self.agenda.verificar_agenda())
 
 if __name__ == "__main__":
     unittest.main()
